@@ -1,8 +1,9 @@
 import { useState } from "react"
+import {Trash} from 'lucide-react'
 
 
 const App = () => {
-  const [tasks,setTasks]=useState([""])
+  const [tasks,setTasks]=useState([])
   const [newTask,setNewTask]=useState(" ")
 
 const addTask=()=>{
@@ -17,6 +18,10 @@ const Enterfun=(e)=>{
     addTask()
   }
 }
+const Trashbtn=(index)=>{
+  const updatedTasks = tasks.filter((_,i) => i !== index);
+  setTasks(updatedTasks)
+}
   return (
     <div>
       <h1 className='bg-blue-500 text-white flex content-center justify-center text-5xl font-bold shadow-lg'>
@@ -26,7 +31,9 @@ const Enterfun=(e)=>{
       <ul>
       
           {tasks.map((task,index)=>(
-            <li key={index}> {task}</li>
+            <li className="bg-orange-400 mb-[1px] text-white font-semibold text-2xl pl-2 content-center justify-center flex" key={index}> {`${task}`}
+            <Trash className="text-red-400 bg-white rounded ml-auto" onClick={(i)=>Trashbtn(index)}/>
+            </li>
           ))}
       
       </ul>
