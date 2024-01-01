@@ -1,6 +1,22 @@
-import React from 'react'
+import { useState } from "react"
+
 
 const App = () => {
+  const [tasks,setTasks]=useState([""])
+  const [newTask,setNewTask]=useState(" ")
+
+const addTask=()=>{
+  if(newTask.trim()!==""){
+    setTasks([...tasks,newTask])
+    setNewTask(" ")
+  }
+}
+
+const Enterfun=(e)=>{
+  if(e.key =="Enter"){
+    addTask()
+  }
+}
   return (
     <div>
       <h1 className='bg-blue-500 text-white flex content-center justify-center text-5xl font-bold shadow-lg'>
@@ -8,11 +24,17 @@ const App = () => {
       </h1>
 
       <ul>
-        <li>
-        </li>
+      
+          {tasks.map((task,index)=>(
+            <li key={index}> {task}</li>
+          ))}
+      
       </ul>
 
-      <textarea className='border-2 shadow-sm text-2xl font-semibold' cols="100" rows="2" placeholder='Enter your task'></textarea>
+      <textarea className='border-2 shadow-sm text-2xl font-semibold' cols="100" rows="2" placeholder='Enter your task' value={newTask} onChange={(e)=>setNewTask(e.target.value)} onKeyDown={Enterfun}
+      ></textarea>
+
+      <button className="block h-12 w-32 bg-blue-400 text-white text-3xl font-semibold rounded animate-bounce" onClick={addTask}>add task</button>
     </div>
   )
 }
