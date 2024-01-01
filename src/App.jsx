@@ -26,7 +26,7 @@ const Enterfun=(e)=>{
       <ul>
       
           {tasks.map((task,index)=>(
-            <li key={index}> {task}</li>
+            <li className="bg-orange-400 mb-[1px] text-white font-semibold text-2xl pl-2" key={index}> {`${task}`}</li>
           ))}
       
       </ul>
